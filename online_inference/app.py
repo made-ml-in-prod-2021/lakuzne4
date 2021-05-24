@@ -10,8 +10,6 @@ from sklearn.linear_model import LogisticRegression
 from fastapi import FastAPI, HTTPException
 import uvicorn
 
-# sys.path.append("D:\MADE_homeworks\ML_prod\homework2_repo\online_inference")
-
 from .src.model import (make_features,
                         predict_model
                         )
