@@ -3,7 +3,7 @@ import json
 
 import pytest
 
-from ..rest_service import app, load_model
+from ..app import app, load_model
 from ..src.data_model import DataModelHeartDisease
 from fastapi.testclient import TestClient
 
