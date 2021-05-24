@@ -3,7 +3,9 @@ online_inference
 
 Описание REST API:
 ```/``` - GET, root endpoint
+
 ```/predict``` - POST, сделать предсказание для списка строк данных
+
 ```docs``` - документация
 
 Сделано:
