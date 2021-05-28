@@ -2,7 +2,7 @@ import pytest
 import pandas as pd
 
 from ml_project.source_code.data.make_dataset import read_data, split_train_val_data
-from tests.generate_test_data import get_test_file, TEST_DATA_SIZE, get_faker_test_file
+from .generate_test_data import get_test_file, TEST_DATA_SIZE, get_faker_test_file
 
 
 def test_read_data(get_test_file):

@@ -1,5 +1,5 @@
 import sys
-sys.path.append(r"D:\MADE_homeworks\ML_prod\homework1\ml_project")
+# sys.path.append(r"D:\MADE_homeworks\ML_prod\homework1\ml_project")
 import os
 
 from ml_project.source_code.entities.parameters import (FeatureParams,
