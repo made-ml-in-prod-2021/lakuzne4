@@ -10,6 +10,6 @@ def read_data(input_filepath: str) -> pd.DataFrame:
     return data
 
 
-def split_train_val_data(input_data: pd.DataFrame, params: dataclass) -> Tuple[pd.DataFrame]:
-    train_data, val_data = train_test_split(input_data, **asdict(params))
+def split_train_val_data(input_data: pd.DataFrame, params: dict) -> Tuple[pd.DataFrame]:
+    train_data, val_data = train_test_split(input_data, **params)
     return train_data, val_data

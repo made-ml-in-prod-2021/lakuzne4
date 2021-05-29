@@ -1,32 +1,33 @@
-import sys
-# sys.path.append(r"D:\MADE_homeworks\ML_prod\homework1\ml_project")
 import os
 
-from ml_project.source_code.entities.parameters import (FeatureParams,
+from source_code.entities.parameters import (FeatureParams,
                                                         TrainParams,
                                                         TrainingPipelineParams,
                                                         EvaluationParams)
-from ml_project.train_pipeline import train_pipeline
+from train_pipeline import train_pipeline
+
+
+TEST_MODEL_PARAMS = dict(
+    algorithm_type='RandomForestClassifier',
+    input_data_path=r"tests\test_data\heart.csv",
+    splitting_params={'test_size': 0.5},
+    feature_params=FeatureParams(target_col='target',
+                                 numerical_features=['age', 'trestbps', 'chol', 'thalach', 'oldpeak'],
+                                 categorical_features=['cp', 'restecg', 'slope', 'ca', 'thal'],
+                                 selected_features=['cp', 'trestbps', 'restecg']
+                                 ),
+    train_params=TrainParams(model_factory='RandomForestClassifier',
+                             model_hyperparams={}),
+    output_model_path=r'tests\test_data\test_model_output.pkl',
+    evaluation_params=EvaluationParams(scorer_collection=['accuracy_score'],
+                    metrics_output_path=r"tests\test_data\test_metrics.pkl")
+)
 
 
 def test_train_e2e(
     tmpdir
     ):
-    my_params = TrainingPipelineParams(
-        algorithm_type='LogisticRegression',
-        input_data_path=r"D:\MADE_homeworks\ML_prod\homework1\ml_project\ml_project\data\raw\heart.csv",
-        splitting_params={'test_size': 0.2},
-        feature_params=FeatureParams(target_col='target',
-                                     numerical_features=['age', 'trestbps', 'chol', 'thalach', 'oldpeak'],
-                                     categorical_features=['cp', 'restecg', 'slope', 'ca', 'thal'],
-                                     selected_features=['cp', 'trestbps', 'restecg']
-                                     ),
-        train_params=TrainParams(model_factory='LogisticRegression',
-                                 model_hyperparams={"C": 1.0}),
-        output_model_path=r'D:\MADE_homeworks\ML_prod\homework1\ml_project\tests\test_model_output.pkl',
-        evaluation_params=EvaluationParams(scorer_collection=['accuracy_score'],
-                metrics_output_path=r"D:\MADE_homeworks\ML_prod\homework1\ml_project\tests\test_metrics.pkl")
-                                      )
+    my_params = TrainingPipelineParams(**TEST_MODEL_PARAMS)
     real_model_path, metrics = train_pipeline(my_params)
     assert metrics['accuracy_score'] > 0
     assert os.path.exists(real_model_path)
@@ -37,21 +38,7 @@ def test_log_messages(
         tmpdir,
         caplog
 ):
-    my_params = TrainingPipelineParams(
-        algorithm_type='LogisticRegression',
-        input_data_path=r"D:\MADE_homeworks\ML_prod\homework1\ml_project\ml_project\data\raw\heart.csv",
-        splitting_params={'test_size': 0.2},
-        feature_params=FeatureParams(target_col='target',
-                                     numerical_features=['age', 'trestbps', 'chol', 'thalach', 'oldpeak'],
-                                     categorical_features=['cp', 'restecg', 'slope', 'ca', 'thal'],
-                                     selected_features=['cp', 'trestbps', 'restecg']
-                                     ),
-        train_params=TrainParams(model_factory='LogisticRegression',
-                                 model_hyperparams={"C": 1.0}),
-        output_model_path=r'D:\MADE_homeworks\ML_prod\homework1\ml_project\tests\test_model_output.pkl',
-        evaluation_params=EvaluationParams(scorer_collection=['accuracy_score'],
-                metrics_output_path=r"D:\MADE_homeworks\ML_prod\homework1\ml_project\tests\test_metrics.pkl")
-                                      )
+    my_params = TrainingPipelineParams(**TEST_MODEL_PARAMS)
     real_model_path, metrics = train_pipeline(my_params)
 
     print(caplog)

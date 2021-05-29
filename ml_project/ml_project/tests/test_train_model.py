@@ -4,25 +4,22 @@ from types import SimpleNamespace
 from dataclasses import asdict
 import warnings
 import numpy as np
-from typing import List
-import os
 import pickle
 import json
 
-from ml_project.source_code.models.train_model import (train_model,
+from source_code.models.train_model import (train_model,
                                                        predict_model,
                                                        evaluate_model,
                                                        serialize_model,
                                                        save_metrics
                                                        )
-from ml_project.source_code.features.build_features import build_transformer
-from ml_project.source_code.entities.parameters import (EvaluationParams,
+from source_code.features.build_features import build_transformer
+from source_code.entities.parameters import (EvaluationParams,
                                                         FeatureParams,
                                                         TrainParams,
                                                         TrainingPipelineParams
                                                         )
 
-from tests.generate_test_data import get_test_file, TEST_DATA_SIZE
 from sklearn.base import BaseEstimator
 
 @pytest.fixture

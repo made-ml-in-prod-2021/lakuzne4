@@ -14,13 +14,13 @@ Heart diseases USI (https://www.kaggle.com/ronitf/heart-disease-uci)
 
 Для обучения модели следует использовать команду train с заполненным файлом конфигурации:
     
-    python train_pipeline.py train --config_file configs/base_config_log_reg.yml
+    python ml_project/train_pipeline.py train --config_file configs/base_config_log_reg.yml
 
 
 
 Для предсказания с помощью уже обученной модели следует использовать команду predict с трёмя обязательными опциями:
 
-    python train_pipeline.py predict --data_path data/interim/sample_for_prediction.csv --model_path models/model_output_GB.pkl --output_path data/predicted/predicted.csv
+    python ml_project/train_pipeline.py predict --data_path data/interim/sample_for_prediction.csv --model_path models/model_output_GB.pkl --output_path data/predicted/predicted.csv
 
 
 Структура проекта

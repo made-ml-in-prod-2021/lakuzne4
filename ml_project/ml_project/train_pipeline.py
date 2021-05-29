@@ -1,24 +1,22 @@
 import click
 import logging
-import sys
 import pickle
 import pandas as pd
-sys.path.append(r"D:\MADE_homeworks\ML_prod\homework1_repo\ml_project")  # for developing
 
-from ml_project.source_code.data.make_dataset import read_data, split_train_val_data
-from ml_project.source_code.features.build_features import build_transformer, make_features, extract_target
-from ml_project.source_code.models.train_model import (train_model,
+from source_code.data.make_dataset import read_data, split_train_val_data
+from source_code.features.build_features import build_transformer, make_features, extract_target
+from source_code.models.train_model import (train_model,
                                                        predict_model,
                                                        evaluate_model,
                                                        serialize_model,
                                                        save_metrics)
-from ml_project.source_code.entities.parameters import TrainingPipelineParams, read_config
+from source_code.entities.parameters import TrainingPipelineParams, read_config
 
 
 logger = logging.getLogger('train_pipeline_logger')
 logger.setLevel(logging.INFO)
 logging_handler = logging.FileHandler(
-            filename=r'D:\MADE_homeworks\ML_prod\homework1_repo\ml_project\ml_project\logs\logs.txt'
+            filename=r'logs\logs.txt'
 )
 logging_handler.setFormatter(logging.Formatter("%(asctime)s;%(levelname)s;%(message)s"))
 logger.addHandler(logging_handler)

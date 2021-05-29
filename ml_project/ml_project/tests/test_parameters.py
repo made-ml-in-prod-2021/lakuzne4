@@ -2,8 +2,8 @@ import pytest
 import yaml
 from dataclasses import asdict
 
-from ml_project.source_code.entities.parameters import read_config
-from .generate_test_data import get_test_file
+from source_code.entities.parameters import read_config
+
 
 
 @pytest.fixture
