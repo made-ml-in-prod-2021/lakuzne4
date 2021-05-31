@@ -14,54 +14,63 @@ Heart diseases USI (https://www.kaggle.com/ronitf/heart-disease-uci)
 
 Для обучения модели следует использовать команду train с заполненным файлом конфигурации:
     
-    python ml_project/train_pipeline.py train --config_file configs/base_config_log_reg.yml
-
-
+    python train_pipeline.py train --config_file configs/base_config_log_reg.yml
 
 Для предсказания с помощью уже обученной модели следует использовать команду predict с трёмя обязательными опциями:
 
-    python ml_project/train_pipeline.py predict --data_path data/interim/sample_for_prediction.csv --model_path models/model_output_GB.pkl --output_path data/predicted/predicted.csv
+    python train_pipeline.py predict --data_path data/interim/sample_for_prediction.csv --model_path models/model_output_baseline.pkl --output_path data/predicted/predicted.csv
+    
+Для запуска тестов:
+
+    python -m pytest -v
 
 
 Структура проекта
 ------------
 
     ├── README.md          <- Главный README файл для пользователей.
+    |
+    ├── requirements.txt   <- Файл requirements.txt для среды выполнения
+    |
     ├── train_pipeline.py  <- Файл с верхнеуровневым кодом для пайплайна обучения
+    |
+    ├── configs            <- Файлы конфигруаций для запуска обучения моделей
+    |
     ├── data
-    │   ├── interim        <- Папка для возможных промежуточных данных
+    │   ├── interim        <- Возможные промежуточные наборы данных
+    |   ├── predicted      <- Результаты предсказаний
     │   ├── processed      <- Окончательный набор данных для моделирования
     │   └── raw            <- Исходный набор данных
     |
     ├── logs               <- Для логирования    
     │
-    ├── models             <- Обученные и сохранённые модели, а также их предсказания
+    ├── models             <- Обученные и сохранённые модели
     │
     ├── notebooks          <- Jupyter notebooks для EDA задач 
     │
     ├── reports            <- Отчёты по прогонам моделей
     │   └── figures        <- Подпапка для сгенерированных графиков для отчётов
     │
-    ├── requirements.txt   <- Файл requirements.txt для среды выполнения
-    │
-    └── source_code        <- Папка с исходным кодом проекта
-        ├── __init__.py    <- Чтобы source_code был Python модулем.
-        │
-        ├── data           <- Скрипты для загрузки данных
-        │   └── make_dataset.py
-        |   
-        ├── entities       <- Скрипты для обработки параметров конфигурации
-        |   | 
-        │   └── input_objects.py  <- объекты моделей и скореров для подтягивания их через config
-        |   └── parameters.py <- параметры файлов конфигурации
-        │
-        ├── features       <- Скрипты для предобработки данных
-        │   └── build_features.py
-        │
-        ├── models         <- Скрипты для тренировки моделей
-            │                 
-            ├── predict_model.py
-            └── train_model.py
+    ├── source_code        <- Папка с исходным кодом проекта
+    |   ├── __init__.py    <- Чтобы source_code был Python модулем.
+    |   │
+    |   ├── data           <- Скрипты для загрузки данных
+    |   │   └── make_dataset.py
+    |   |   
+    |   ├── entities       <- Скрипты для обработки параметров конфигурации
+    |   |   | 
+    |   │   └── input_objects.py  <- объекты моделей и скореров для подтягивания их через config
+    |   |   └── parameters.py <- параметры файлов конфигурации
+    |   │
+    |   ├── features       <- Скрипты для предобработки данных
+    |   │   └── build_features.py
+    |   │
+    |   └── models         <- Скрипты для тренировки моделей
+    |       │                 
+    |       └── train_model.py
+    |
+    └── tests              <- тесты на прогон end2end и на отдельные модули
+    
 --------
 
 Самооценка:

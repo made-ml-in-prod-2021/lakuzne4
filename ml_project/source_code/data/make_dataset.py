@@ -2,7 +2,6 @@
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from typing import Tuple
-from dataclasses import asdict, dataclass
 
 
 def read_data(input_filepath: str) -> pd.DataFrame:
